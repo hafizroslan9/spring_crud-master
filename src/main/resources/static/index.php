@@ -35,7 +35,7 @@ tr:nth-child(even) {
 <nav class="w3-sidenav w3-pale-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidenav"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding-xlarge w3-hide-large w3-display-topleft w3-hover-white" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-      <img height="180px" src="../pictures/liberty.png"/>
+      <!--<img height="180px" src="../pictures/liberty.png"/>-->
     <h3 class="w3-padding-64"><b><u>Hello MANAGEMENT SYSTEM</u></b></h3>
   </div>
  
