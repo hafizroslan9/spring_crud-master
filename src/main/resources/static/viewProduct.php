@@ -1,9 +1,24 @@
+<?php
+      
+$servername = "d7jdcs2gd3carr";
+$username = "azxcuqwjjdmxwi";
+$password = "5894ea67c1b0c0ade677dfa6ed46eccb3ec87b725b9321971cdbf7008674901a";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+
+?>
 <!DOCTYPE html>
 <html>
 <title>AGENT MANAGEMENT SYSTEM</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <style>
@@ -43,9 +58,9 @@ tr:nth-child(even) {
   <div class="w3-padding w3-hover-white" onclick="myAccFunc()" style="cursor:pointer">
   Product <i class="fa fa-caret-down"></i></div>
   <div id="demoAcc" class="w3-hide w3-blue-pale w3-card-4">
-    <a class="w3-padding w3-hover-white" href="viewProduct.html" >View Product</a>
-    <a class="w3-padding w3-hover-white" href="addProduct.html" >Add Product</a>
-	<a class="w3-padding w3-hover-white" href="updateProduct.html" >Update Product</a>
+    <a href="viewProduct.html" class="w3-padding w3-hover-white" >View Product</a>
+    <a href="addProduct.html" class="w3-padding w3-hover-white" >Add Product</a>
+	<a href="updateProduct.html" class="w3-padding w3-hover-white" >Update Product</a>
   </div>
 	<div class="w3-padding w3-hover-white" onclick="myAccFunc()" style="cursor:pointer">
 	Agent <i class="fa fa-caret-down"></i></div>
@@ -76,29 +91,49 @@ tr:nth-child(even) {
 
   <!-- Header -->
   <div class="w3-container" style="margin-top:20px" id="home">
-    <h1 class="w3-jumbo"><b>Update Product</b></h1>
+    <h1 class="w3-jumbo"><b>View Product</b></h1>
     <h1 class="w3-xxxlarge w3-text-black">Supplier : Hafiz</u></b></h1>
     <hr style="width:50px;border:5px solid black" class="w3-round">
   </div>
-   <fieldset>
-  <legend>Please fill all the field</legend>
-<form action="/action_page.php">
-  <!--<label for="pic">Upload picture:</label><br>
-  <input type="file" id="myFile" name="filename"><br>-->
-  <label for="sname">Stock name:</label><br>
-  <input type="text" id="fname" name="fname"><br>
-  <label for="sdesc">Stock Description:</label><br>
-  <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea><br>
-  <label for="squantity">Stock Quantity:</label><br>
-  <input type="text" id="lname" name="lname"><br>
-  <label for="scategory">Stock Category:</label><br>
-  <select id="category" name="cars">
-    <option value="wet">Wet</option>
-    <option value="dry">Dry</option>
-	</select><br><br>
-  <input type="submit" value="Update">
-</form> 
-</fieldset>
+
+<table>
+  <tr>
+    <th>Product ID</th>
+	<!--<th>Product Image</th>-->
+    <th>Product Name</th>
+    <th>Product Quantity</th>
+	<th>Product Price</th>
+	<th>Product Description</th>
+	<th>Product Type</th>
+  </tr>
+  <tr>
+    <td>D001</td>
+    <!--<td><img src="../uploadStock/driedstrawberry.jpeg"style="width:100px;height:100px;"></td>-->
+    <td>Dried Strawberry</td>
+	<td>50</td>
+	<td>RM6.60</td>
+	<td>blablalv</td>
+	<td>Dry</td>
+  </tr>
+<? php
+
+$sql = "SELECT * FROM product";
+if($result = mysqli_query($conn, $sql)){
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_array($result)){
+echo "<tr>";
+                echo "<td>" . $row['productId'] . "</td>";
+                echo "<td>" . $row['productName'] . "</td>";
+                echo "<td>" . $row['productQuantity'] . "</td>";
+                echo "<td>" . $row['productPrice'] . "</td>";
+                echo "<td>" . $row['productDescription'] . "</td>";
+                 echo "<td>". $row['productType'] . "</td>";
+            echo "</tr>";
+        }
+      }
+    }
+        ?>
+</table>
  <!-- Photo grid (modal) 
 	<div class="w3-row-padding">
 		<div class="w3-half">
@@ -164,3 +199,4 @@ function confirmationLogout(anchor)
 
 </body>
 </html>
+
